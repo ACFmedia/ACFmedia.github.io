@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ACF Media</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{--bg:#07080a;--panel:#101216;--line:#23272e;--silver:#d9dde3;--mute:#8b929c;--hi:#f4f6f8;
+ box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-behavior:smooth;scroll-padding-top:5rem}
+body{background:var(--bg);color:var(--silver);font-family:'Instrument Sans',system-ui,sans-serif;margin:0;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Syne',system-ui,sans-serif}
+.metal{background:linear-gradient(100deg,#7d838c 0%,#f4f6f8 28%,#9aa0a9 48%,#ffffff 66%,#868c95 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sheen 7s ease-in-out infinite alternate}
+@keyframes sheen{to{background-position:100% 0}}
+.disc{width:min(78vw,460px);aspect-ratio:1;border-radius:50%;
+ background:conic-gradient(from 0deg,#1a1d22,#c9ced6,#2a2e35,#f1f3f6,#31353c,#a9afb8,#16181c,#c9ced6,#1a1d22);
+ box-shadow:0 0 120px rgba(190,198,210,.12),inset 0 0 0 1px rgba(255,255,255,.12);
+ -webkit-mask:radial-gradient(circle,transparent 31%,#000 32%);mask:radial-gradient(circle,transparent 31%,#000 32%);
+ animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tilt{transition:transform .25s ease-out}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 1.6rem;border-radius:999px;font-weight:600;transition:transform .2s,background .2s,box-shadow .2s}
+.btn-primary{background:linear-gradient(135deg,#f4f6f8,#aeb4bd);color:#0a0b0d}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(220,226,234,.25)}
+.btn-primary:active{transform:scale(.97)}
+.sec{border-top:1px solid var(--line)}
+.sector{border:1px solid var(--line);background:var(--panel);transition:border-color .25s,background .25s,transform .25s;text-align:left}
+.sector:hover{border-color:#4a5058}
+.sector[aria-selected=true]{border-color:var(--silver);background:#171a1f}
+.sector:active{transform:scale(.985)}
+.panel-in{animation:pin .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes pin{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.field{width:100%;background:#0c0e11;border:1px solid var(--line);border-radius:.75rem;padding:.9rem 1rem;color:var(--hi);transition:border-color .2s,box-shadow .2s}
+.field:focus{outline:none;border-color:var(--silver);box-shadow:0 0 0 3px rgba(217,221,227,.12)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--silver);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="fixed top-0 inset-x-0 z-30 backdrop-blur-md" style="background:rgba(7,8,10,.72);padding-top:env(safe-area-inset-top,0px)">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="disp text-xl font-extrabold tracking-tight text-white">ACF<span class="text-[color:var(--mute)] font-medium"> Media</span></a>
+    <nav class="hidden sm:flex gap-8 text-sm text-[color:var(--mute)]">
+      <a class="hover:text-white transition" href="#hakkimizda">Hakkımızda</a>
+      <a class="hover:text-white transition" href="#sektorler">Sektörler</a>
+      <a class="hover:text-white transition" href="#iletisim">İletişim</a>
+    </nav>
+    <a href="#iletisim" class="btn btn-primary !py-2 !px-4 text-sm">Bize Ulaşın</a>
+  </div>
+</header>
+
+<main id="top">
+<section class="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden">
+  <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(60% 50% at 75% 45%,rgba(120,128,140,.14),transparent 70%)"></div>
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center relative">
+    <div>
+      <h1 class="metal text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-[1.02] tracking-tight">Her sektörün sesini bulan medya ajansı.</h1>
+      <p class="mt-6 text-lg text-[color:var(--mute)] max-w-md leading-relaxed">Strateji, prodüksiyon ve dijital dağıtımı tek çatı altında topluyoruz. Sağlıktan enerjiye, her markanın dili farklıdır; biz o dili öğreniriz.</p>
+      <div class="mt-9 flex flex-wrap gap-4">
+        <a href="#iletisim" class="btn btn-primary">Bize Ulaşın</a>
+        <a href="#sektorler" class="btn border border-[color:var(--line)] hover:border-[color:var(--silver)] text-white">Sektörleri keşfedin</a>
+      </div>
+    </div>
+    <div class="flex justify-center"><div id="tilt" class="tilt"><div class="disc"></div></div></div>
+  </div>
+</section>
+
+<section id="hakkimizda" class="sec py-28">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-5 gap-12">
+    <h2 class="lg:col-span-2 text-3xl sm:text-4xl font-bold text-white leading-tight">Vizyonumuz: karmaşık işleri net bir hikâyeye çevirmek.</h2>
+    <div class="lg:col-span-3 space-y-6 text-lg leading-relaxed text-[color:var(--mute)]">
+      <p>ACF Media, teknik ve düzenlemeye tabi sektörlerde çalışan markaların iletişimini sadeleştirir. Bir tıbbi cihazın güvenilirliğini de, bir enerji yatırımının ölçeğini de aynı titizlikle anlatırız.</p>
+      <p>Araştırmayla başlar, görsel dil ve içerikle devam eder, ölçümle bitiririz. Her proje, markanın sektörüne özel kuralları ve izleyicisini dikkate alan bir plana dayanır.</p>
+      <div class="grid grid-cols-3 gap-4 pt-4">
+        <div class="border-l border-[color:var(--line)] pl-4"><div class="disp text-3xl text-white font-bold" data-count="120" data-suf="+">0</div><div class="text-sm">tamamlanan proje</div></div>
+        <div class="border-l border-[color:var(--line)] pl-4"><div class="disp text-3xl text-white font-bold" data-count="6" data-suf="">0</div><div class="text-sm">sektör</div></div>
+        <div class="border-l border-[color:var(--line)] pl-4"><div class="disp text-3xl text-white font-bold" data-count="40" data-suf="+">0</div><div class="text-sm">marka ortağı</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sektorler" class="sec py-28">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl sm:text-4xl font-bold text-white max-w-xl leading-tight">Hizmet verdiğimiz sektörler</h2>
+    <p class="mt-4 text-[color:var(--mute)] max-w-lg">Bir sektör seçin, o alanda nasıl çalıştığımızı görün.</p>
+    <div class="mt-12 grid lg:grid-cols-5 gap-6">
+      <div id="tabs" role="tablist" class="lg:col-span-2 grid grid-cols-2 lg:grid-cols-1 gap-3"></div>
+      <div id="panel" class="lg:col-span-3 rounded-2xl border border-[color:var(--line)] p-8 sm:p-10 min-h-[340px]" style="background:var(--panel)" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="iletisim" class="sec py-28">
+  <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-14">
+    <div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white leading-tight">Projenizi konuşalım.</h2>
+      <p class="mt-4 text-[color:var(--mute)] max-w-md">Formu doldurun; ihtiyacınıza uygun ekibimiz size iş günü içinde dönüş yapsın.</p>
+      <dl class="mt-10 space-y-5 text-[color:var(--mute)]">
+        <div><dt class="text-sm">E-posta</dt><dd class="text-white">info@acfmedia.com</dd></div>
+        <div><dt class="text-sm">Telefon</dt><dd class="text-white">+90 312 000 00 00</dd></div>
+        <div><dt class="text-sm">Adres</dt><dd class="text-white">Ankara, Türkiye</dd></div>
+      </dl>
+    </div>
+    <div class="rounded-2xl border border-[color:var(--line)] p-8" style="background:var(--panel)">
+      <form id="form" class="space-y-4" novalidate>
+        <div><label class="text-sm text-[color:var(--mute)]" for="n">Ad soyad</label><input id="n" class="field mt-1" required autocomplete="name"></div>
+        <div><label class="text-sm text-[color:var(--mute)]" for="e">E-posta</label><input id="e" type="email" class="field mt-1" required autocomplete="email"></div>
+        <div><label class="text-sm text-[color:var(--mute)]" for="s">Sektör</label>
+          <select id="s" class="field mt-1"><option>Tıp ve Sağlık</option><option>Enerji</option><option>Teknoloji</option><option>Finans</option><option>Diğer</option></select></div>
+        <div><label class="text-sm text-[color:var(--mute)]" for="m">Mesajınız</label><textarea id="m" rows="4" class="field mt-1" required></textarea></div>
+        <p id="err" class="text-sm text-red-300 hidden">Ad, geçerli bir e-posta ve mesaj girin.</p>
+        <button class="btn btn-primary w-full justify-center" type="submit">Mesajı gönder</button>
+      </form>
+      <div id="ok" class="hidden text-center py-12 panel-in">
+        <svg class="mx-auto mb-4" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#d9dde3" stroke-width="2"><circle cx="24" cy="24" r="21"/><path d="M14 25l7 7 13-15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3 class="text-xl text-white font-bold">Mesajınız gönderildi</h3>
+        <p class="text-[color:var(--mute)] mt-2">En kısa sürede size dönüş yapacağız.</p>
+        <button id="again" class="mt-6 text-sm underline text-[color:var(--silver)]">Yeni mesaj yaz</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="sec py-8 text-center text-sm text-[color:var(--mute)]">© 2026 ACF Media. Tüm hakları saklıdır.</footer>
+
+<script>
+const S=[
+ {k:'Tıp ve Sağlık',d:'Hastane, klinik ve tıbbi cihaz markaları için güven veren, mevzuata uygun iletişim.',t:['Hasta bilgilendirme filmleri','Kongre ve sağlık turizmi kampanyaları','Hekim marka yönetimi'],i:'<path d="M12 4v16M4 12h16"/>'},
+ {k:'Enerji',d:'Yenilenebilir enerji ve altyapı yatırımlarını; paydaşlara, yatırımcılara ve topluma anlaşılır kılıyoruz.',t:['Tesis ve saha prodüksiyonu','Sürdürülebilirlik raporu tasarımı','Yatırımcı sunumları'],i:'<path d="M13 3L5 14h6l-1 7 8-11h-6z"/>'},
+ {k:'Teknoloji',d:'Ürünü olan ve hızlı büyüyen teknoloji şirketleri için net konumlandırma ve ürün anlatımı.',t:['Ürün lansman kampanyaları','Web ve arayüz tanıtımı','Geliştirici topluluğu içerikleri'],i:'<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13 5l-2 14"/>'},
+ {k:'Finans',d:'Sade bir dille, güvenilir bir ton: bankacılık, sigorta ve fintek markaları için içerik ve kampanya.',t:['Ürün tanıtım serileri','Finansal okuryazarlık içerikleri','Kurumsal kimlik'],i:'<path d="M4 18V9M10 18V5M16 18v-6M22 18H2"/>'},
+ {k:'Diğer sektörler',d:'Eğitim, otomotiv, gıda ve daha fazlası. Yeni bir sektöre girdiğimizde önce izleyiciyi ve kuralları öğreniriz.',t:['Sektör araştırması','Esnek prodüksiyon ekibi','Uçtan uca kampanya'],i:'<circle cx="6" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="18" cy="12" r="1.5"/>'}
+];
+const tabs=document.getElementById('tabs'),panel=document.getElementById('panel');
+const ico=p=>`<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+S.forEach((s,n)=>{const b=document.createElement('button');b.className='sector rounded-xl p-5 flex items-center gap-4 text-white'+(n==4?' col-span-2 lg:col-span-1':'');b.setAttribute('role','tab');b.innerHTML=ico(s.i)+`<span class="font-semibold">${s.k}</span>`;b.onclick=()=>pick(n);tabs.appendChild(b)});
+function pick(n){const s=S[n];[...tabs.children].forEach((c,i)=>c.setAttribute('aria-selected',i==n));
+ panel.innerHTML=`<div class="panel-in"><div class="text-[color:var(--silver)]">${ico(s.i).replace('26','44').replace('26','44')}</div><h3 class="disp text-3xl font-bold text-white mt-5">${s.k}</h3><p class="mt-4 text-lg text-[color:var(--mute)] leading-relaxed max-w-lg">${s.d}</p><ul class="mt-6 space-y-3">${s.t.map(x=>`<li class="flex items-center gap-3 text-[color:var(--silver)]"><span class="w-1.5 h-1.5 rounded-full bg-[color:var(--silver)]"></span>${x}</li>`).join('')}</ul><a href="#iletisim" class="inline-block mt-8 underline text-white" onclick="document.getElementById('s').selectedIndex=${n}">Bu sektör için teklif alın</a></div>`}
+pick(0);
+
+// hero disc follows pointer
+const tilt=document.getElementById('tilt');
+addEventListener('pointermove',e=>{const x=(e.clientX/innerWidth-.5)*16,y=(e.clientY/innerHeight-.5)*16;tilt.style.transform=`translate(${x}px,${y}px)`});
+
+// count-up
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(!en.isIntersecting)return;io.unobserve(en.target);const el=en.target,to=+el.dataset.count;let t0;const f=t=>{t0??=t;const p=Math.min((t-t0)/1200,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)))+el.dataset.suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}),{threshold:.6});
+document.querySelectorAll('[data-count]').forEach(el=>io.observe(el));
+
+// form
+const form=document.getElementById('form'),ok=document.getElementById('ok'),err=document.getElementById('err');
+form.onsubmit=e=>{e.preventDefault();const v=n=>document.getElementById(n).value.trim();
+ if(!v('n')||!/^\S+@\S+\.\S+$/.test(v('e'))||!v('m')){err.classList.remove('hidden');return}
+ err.classList.add('hidden');form.classList.add('hidden');ok.classList.remove('hidden')};
+document.getElementById('again').onclick=()=>{form.reset();ok.classList.add('hidden');form.classList.remove('hidden')};
+</script>
+</body>
+</html>
